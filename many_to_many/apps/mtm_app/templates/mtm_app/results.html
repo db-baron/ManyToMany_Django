@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Survey Results</title>
+    </head>
+    <body>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <form action="/" method="post" ><input type="submit" class="btn btn-success" value="Add User">
+            {% csrf_token %}    
+            </form>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    {% for user in users %}
+                    <ul>
+                    {{ user.name }}
+                    <form action="/showinterest/{{ user.id }}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-success" value="Show"></form>
+                </ul>
+                    {% endfor %}
+                </tr>
+            </table>
+          </div>
+        </div>
+    </body>
+</html>

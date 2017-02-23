@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <form action="/showResults" ><input type="submit" value="Back">
+        {% csrf_token %}
+        </form>
+        <table>
+          <thead>
+            <tr>
+                <th>Interest</th>
+            </tr>
+          </thead>
+          {% for interest in profile %}
+          <tbody>
+            <tr>
+
+                <td>{{ interest.interest_name }}</td>
+                <td>
+                  <form action="/deleteInterest/{{interest.id}}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="delete">
+                  </form>
+                </td>
+
+            </tr>
+          </tbody>
+          {% endfor %}
+
+        </table>
+
+    </body>
+</html>

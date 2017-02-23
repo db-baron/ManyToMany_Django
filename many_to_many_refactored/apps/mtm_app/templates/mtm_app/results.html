@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Survey Results</title>
+    </head>
+    <body>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <form action="/" method="post" ><input type="submit" class="btn btn-default" value="Add User">
+            {% csrf_token %}
+            </form>
+            <!-- <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    {% for user in users %}
+                    <ul>
+                      <th>Name</th>
+                    <td>{{ user.user_name }}</td>
+                    <form action="/showinterest/{{ user.id }}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-default" value="Show"></form>
+                </ul>
+                    {% endfor %}
+                </tr>
+            </table> -->
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              {% for user in users %}
+              <tbody>
+                <tr>
+                  <td>
+                    {{user.user_name}}
+                  </td>
+                  <td>
+                    <form action="/showinterest/{{ user.id }}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-default" value="Show"></form>
+                  </td>
+                  <td>
+                    <form action="/deleteuser/{{user.id}}" method="post">
+                      {% csrf_token %}
+                      <input type="submit" value="Delete User">
+                    </form>
+                  </td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+
+          </div>
+        </div>
+    </body>
+</html>
